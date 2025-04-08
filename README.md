@@ -8,16 +8,17 @@ The goal is to learn Selenium automation step-by-step with practical code, conce
 ## Project Structure
 udemy-selenium-java-automation/
 │
-├── driver/                     # ✅ Browser drivers (chromedriver.exe, msedgedriver.exe)
+├── driver/                   # Browser drivers (chromedriver.exe, msedgedriver.exe)
 │
 ├── src/
 │   └── main/
 │       └── java/
-│           └── SeleniumIntro.java      
+│           └── SeleniumIntro.java   # Main class with browser setup and notes
 │
-├── pom.xml                    # ✅ Maven configuration file (dependencies like Selenium)
-├── .gitignore                 # ✅ (optional) Ignore driver executables, IDE files
-└── README.md                  # ✅ Project overview, setup guide, notes
+├── pom.xml                   # Maven config file (Selenium dependencies)
+├── .gitignore                # Ignore driver .exe files, IDE-specific files
+└── README.md                 # Project overview and usage guide
+
 ---
 ## 🚀 Features
 - Manual vs Automatic WebDriver setup using Selenium Manager
