@@ -6,7 +6,7 @@ public class Exercise {
         System.out.println(numbers[0]);   // First Element
         System.out.println(numbers[4]);   // Last Element
 
-        for(int i=numbers.length-1; i > 0; i--)
+        for(int i=numbers.length-1; i >= 0; i--)
         {
             System.out.println(numbers[i]);
         }
@@ -14,7 +14,7 @@ public class Exercise {
         int totalNumbers=0;
         for(int i: numbers)
         {
-            totalNumbers += numbers[i];
+            totalNumbers += i;
         }
         System.out.println(totalNumbers);
 
