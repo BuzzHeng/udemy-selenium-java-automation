@@ -1,4 +1,4 @@
-public class CoreJavaBrushUp {
+public class CoreJavaBrushUp1 {
     public static void main(String[] args){
 
         //Java Variable and Data Types
@@ -17,7 +17,6 @@ public class CoreJavaBrushUp {
         forLoopDemo.loopIntArrayWithIndex();
         forLoopDemo.loopStringArrayWithIndex();
         forLoopDemo.loopStringArrayForEach();
-        forLoopDemo.printFirstEvenAndBreak();
     }
 
     public static class ArrayDemo {
@@ -65,28 +64,6 @@ public class CoreJavaBrushUp {
             for(String i : name)
             {           //For each string i in array name
                 System.out.println(i);      // i is the value directly
-            }
-        }
-
-        public static void printFirstEvenAndBreak()
-        {
-            //Check if array has multiple of 2
-
-            //Array
-            int[] arr = {1,2,4,5,6,8,9,10,122};
-
-            //For Loop
-            for(int i=0; i<arr.length; i++)
-            {
-                if(arr[i] % 2 == 0) //Conditional Statement (if-else), Modulus %
-                {
-                    System.out.println(arr[i]);
-                    break;          //Break statement
-                }
-                else
-                {
-                    System.out.println(arr[i] + " is not multiple of 2");
-                }
             }
         }
     }
