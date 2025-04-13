@@ -32,5 +32,29 @@ public class Locators {
         System.out.println(driver.findElement(By.cssSelector("p.error")).getText());
         // Confirm unique css/ xapth by using SelectorsHub/ChroPath or Developer Tool Console
         // Syntax $('p.error')
+
+        // tagname A -> anchor: element is linked
+        driver.findElement(By.linkText("Forgot your password?")).click();
+
+        // Xpath
+        // //Tagname[@attribute='value'] -> eg. //input[@placeholder='Username']
+        driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("Lee");
+        // Validate in developer tool by using $x('')
+        // Change '' to "" for attribute value -> eg. $x('//input[@placeholder="Name"]')
+        driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("leeyuanheng16@rsa.com");
+        driver.findElement(By.xpath("//input[@type='text'][2]")).clear();
+        driver.findElement(By.cssSelector("input[type='text']:nth-child(3)")).sendKeys("leeyuanheng16@gmail.com");
+
+        // Indexing
+        // for xpath: //Tagname[@attribute='value'][index]
+        // for css: Tagname[attribute='value']:nth-child(2)
+
+        // parent to child tag traverse technique
+        //form/h2
+        // //parentTagname/childTagname[index]
+        // for css: ParentTagname childTagname
+        driver.findElement(By.xpath("//form/input[3]")).sendKeys("12345677");
+        driver.findElement(By.className("reset-pwd-btn")).click();
+        System.out.println(driver.findElement(By.cssSelector("form p")).getText());
     }
 }
