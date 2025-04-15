@@ -60,6 +60,8 @@
    - Exact Text Match: 
         //tagname[text()='Text'] → `//button[text()='Log Out']`
         //*[text()='Text']       → `//*[text()='Log Out']`
+   - Parent-Child-Sibling:
+        //header/div/button[1]/following-sibling::button[1]
 ```
 
 

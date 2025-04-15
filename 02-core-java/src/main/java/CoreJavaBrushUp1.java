@@ -11,7 +11,7 @@ public class CoreJavaBrushUp1 {
         System.out.println(myNum+" is the value stored in myNum variable");
         System.out.println(website);
 
-        ArrayDemo.declareWithSizeAndAssign();
+        ArrayDemo.declareSizeWithNewOperator();
         ArrayDemo.declareWithInitialization();
 
         forLoopDemo.loopIntArrayWithIndex();
@@ -20,7 +20,7 @@ public class CoreJavaBrushUp1 {
     }
 
     public static class ArrayDemo {
-        public static void declareWithSizeAndAssign()
+        public static void declareSizeWithNewOperator()
         {
             int[] arr = new int[5]; // Create an array of size 5 with default values 0.
             arr[0] = 1;
