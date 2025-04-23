@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class UpdateDropDown {
+public class UpdateDropDown_02 {
     public static void main(String[] args){
 
         WebDriver driver = new ChromeDriver();
