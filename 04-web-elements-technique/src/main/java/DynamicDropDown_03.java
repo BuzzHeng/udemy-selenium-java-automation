@@ -16,7 +16,7 @@ public class DynamicDropDown_03 {
 
         //xpath parent child relationship
         driver.findElement(By.xpath(
-                "//div[@id='glsctl00_mainContent_ddl_destinationStation1_CTNR'] //a[@value='MAA']"))
+                        "//div[@id='glsctl00_mainContent_ddl_destinationStation1_CTNR'] //a[@value='MAA']"))
                 .click();
     }
 }

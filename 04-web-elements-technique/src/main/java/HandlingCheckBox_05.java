@@ -11,7 +11,7 @@ public class HandlingCheckBox_05 {
         driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         Assert.assertFalse(driver.findElement
-                        (By.cssSelector("input[id='ctl00_mainContent_chk_SeniorCitizenDiscount']")).isSelected());
+                (By.cssSelector("input[id='ctl00_mainContent_chk_SeniorCitizenDiscount']")).isSelected());
 
         driver.findElement(By.cssSelector("input[id='ctl00_mainContent_chk_SeniorCitizenDiscount']")).click();
         System.out.println(driver.findElement
@@ -23,7 +23,7 @@ public class HandlingCheckBox_05 {
         driver.findElement(By.id("divpaxinfo")).click();
         System.out.println(driver.findElement(By.id("divpaxinfo")).getText());
 
-        for(int i=1; i<5; i++) {
+        for (int i = 1; i < 5; i++) {
             driver.findElement(By.id("hrefIncAdt")).click();
         }
 
