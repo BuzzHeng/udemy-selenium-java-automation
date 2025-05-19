@@ -15,6 +15,10 @@ public class JavaScriptExecutor_01 {
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
+        //document.querySelector(".tableFixHead") same as driver.findElement()
+        //document.querySelector(".tableFixHead").scrollTop=5000 -> scroll down
+        //.scrollTop= 0 -> back to original postiion.
+
         js.executeScript("window.scrollBy(0,500)");
         js.executeScript("document.querySelector('.tableFixHead').scrollTop=5000");
 
