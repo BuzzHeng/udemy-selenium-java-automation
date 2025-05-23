@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Test01 {
+public class Test_01 {
     //Count number of names starting with Alphabet A
     @Test
     public void regular(){
