@@ -143,3 +143,9 @@ public void launchApp(String url) {
   </test>
 </suite>
 ```
+
+Parameterising with multiple data sets by running tests with multiple combination
+
+How to achieve parameterising?
+1. From TestNG xml file using Parameter
+2. use DataProvider Annotation
