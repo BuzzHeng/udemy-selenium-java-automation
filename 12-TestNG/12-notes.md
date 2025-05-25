@@ -149,3 +149,67 @@ Parameterising with multiple data sets by running tests with multiple combinatio
 How to achieve parameterising?
 1. From TestNG xml file using Parameter
 2. use DataProvider Annotation
+
+
+### TestNG Listeners (ITestListener)
+
+---
+[Purpose]  
+→ Hook into test execution events (start, success, fail, skip)  
+→ Useful for logging, screenshots, reports, alerts
+---
+[Interface] → implements ITestListener  
+Override methods to handle events
+
+[Common Methods]
+- onTestStart()           → before test method runs
+- onTestSuccess()         → when test passes
+- onTestFailure()         → when test fails
+- onTestSkipped()         → when test is skipped
+- onStart()               → before any test starts in suite
+- onFinish()              → after all tests finish
+
+[Example]
+```java
+@Override
+public void onTestSuccess(ITestResult result) {
+    System.out.println("Test passed");
+}
+@Override
+public void onTestFailure(ITestResult result) {
+    System.out.println("Test failed");
+    // Add screenshot, logs, alerts here
+}
+```
+---
+[Activate Listener]
+Option 1 → Add to testng.xml
+```xml
+<listeners>
+  <listener class-name="test.Listeners05"/>
+</listeners>
+```
+Option 2 → Add @Listeners annotation
+```java
+@Listeners(test.Listeners05.class)
+public class YourTestClass { ... }
+```
+
+[onTestFailure(ITestResult result)]  
+→ Triggered when a test method fails  
+→ Used for: screenshots, logging, cleanup, alerts
+
+[Common Usage]
+- result.getName()            → get test method name
+- result.getThrowable()       → get error/exception
+- result.getTestClass()       → get class info
+- result.getMethod()          → get full method object
+[Example]
+```java
+@Override
+public void onTestFailure(ITestResult result) {
+    System.out.println("FAILED: " + result.getName());
+    System.out.println("Reason: " + result.getThrowable());
+    // Add screenshot or logging here
+}
+```

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Load Department">
+<suite name="Load Department" parallel="tests" thread-count="10">
+    <listeners>
+        <listener class-name="test.Listeners05"/>
+    </listeners>
     <parameter name="URL" value="qaclickacademy.com"/>
     <test name="Personal Loan">
         <parameter name="URL" value="personalloan.com"/>

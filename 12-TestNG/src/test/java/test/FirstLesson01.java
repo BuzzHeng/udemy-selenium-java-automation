@@ -1,5 +1,6 @@
 package test;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Parameters;
@@ -20,6 +21,7 @@ public class FirstLesson01{
     public void FirstTest(String urlname){
         System.out.println("Hello");
         System.out.println(urlname);
+        Assert.fail();
     }
 
     @Test(groups="Smoke")
