@@ -1,17 +1,35 @@
-## Java Object Oriented Programming
+### 20 – Java Object Oriented Programming
 
-[Inheritance] - using `extends` keyword
-@BeforeMethod will always run first befoe each method no matter in 
-parent or child class.
+---
 
-How TestNG Annotation help with inheritance
-to remove boilerPlate code in Test
+[Inheritance]  
+→ Use `extends` to reuse methods from parent class  
+→ @BeforeMethod runs before every @Test (parent or child)
 
-Single Responsibility Principle
+[TestNG + Inheritance]  
+→ Remove boilerplate code  
+→ Share common setup logic (e.g., login, setup) across classes
 
-1) Parameterized Constructor
-2) Instance Variable
-3) Class Variable
-4) How to make your class independence of test data
+[Single Responsibility Principle]  
+→ Test class only triggers logic  
+→ Utility class handles actual logic (e.g., PS2, PS3)
 
-Super keyword
+---
+
+[OOP Concepts]
+1) Parameterized Constructor → pass data to object
+2) Instance Variable         → per object (use `this.a`)
+3) Class Variable (static)   → shared by all objects
+4) Data Independence         → avoid hardcoding; use constructor or data provider
+
+[super]  
+→ Call parent constructor → `super(a)`  
+→ Must be first line in child constructor
+
+---
+
+[Example Chain]
+- PS3 → utility class (multiply)
+- PS2 → extends PS3 (add logic, calls `super(a)`)
+- PS1 → test class, uses PS2
+- PS  → base setup, contains @BeforeMethod
