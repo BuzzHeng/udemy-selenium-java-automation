@@ -33,7 +33,6 @@ List<WebElement> tblCol = driver.findElements(By.xpath("//table[@id='product']/t
 How to perform Arrow Key Down?
 driver.findElement(By.Id("text-id").sendKeys(Keys.DOWN);
 
-
 How to extract value from a field with help of Javascript Executor?
 
 ```declarative

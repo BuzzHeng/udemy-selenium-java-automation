@@ -45,3 +45,5 @@
     - Fill form fields (name, email, password, gender, DOB)
     - Click Submit button
     - Validate success message
+
+---
