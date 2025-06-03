@@ -28,7 +28,7 @@ Because intermediate operations will only be executed when a terminal operation 
 
 --- Intermediate Operations ---
 filter()         -> keep items matching a condition  
-map()             -> transform each item  
+map()            -> transform each item  
 flatMap()        -> flatten nested lists  
 sorted()         -> sort the stream  
 distinct()       -> remove duplicates  
