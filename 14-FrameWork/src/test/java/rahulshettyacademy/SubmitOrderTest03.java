@@ -9,52 +9,42 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import rahulshettyacademy.pageObjects.LoginPage;
+import rahulshettyacademy.pageObjects.ProductCatalogue;
 
-import javax.swing.*;
 import java.time.Duration;
 import java.util.List;
 
-public class StandAloneTest02 {
-    public static void main(String[] args){
+public class SubmitOrderTest03 {
+    private static final Logger log = LoggerFactory.getLogger(SubmitOrderTest03.class);
+
+    public static void main(String[] args) throws InterruptedException {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().window().maximize();
-
-
-        driver.get("https://rahulshettyacademy.com/client");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         String username = "scrashers@gmail.com";
         String password = "@QWE12345qwe";
+        String productName = "ZARA COAT 3";
 
-        driver.findElement(By.id("userEmail")).sendKeys(username);
-        driver.findElement(By.id("userPassword")).sendKeys(password);
-        driver.findElement(By.id("login")).click();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.goTo();
+        loginPage.loginApplication(username,password);
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.body.style.zoom='80%'");
 
-        List<WebElement> products = driver.findElements(By.cssSelector(".mb-3"));
+        ProductCatalogue productCatalogue = new ProductCatalogue(driver);
+        List<WebElement> products = productCatalogue.getProductList();
 
-        /* Normal Loops
-        for(int i =0; i<products.size();i++){
-            String getName = products.get(i).findElement(By.cssSelector("h5 b")).getText();
-            System.out.println(getName);
-        }
-        */
-        // Latest way of writing code for Automation using JavaStream
-        WebElement prod = products.stream()
-                .filter(product->product.findElement(By.cssSelector("b")).getText().equals("ZARA COAT 3"))
-                .findFirst()
-                .orElse(null);
+        productCatalogue.addProductToCart(productName);
 
-        prod.findElement(By.cssSelector(".card-body button:last-of-type")).click();
-
-        //ng-animating
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
-        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating"))));
         driver.findElement(By.cssSelector("[routerlink*='cart']")).click();
 
         List<WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
@@ -63,14 +53,12 @@ public class StandAloneTest02 {
         Assert.assertTrue(match);
         driver.findElement(By.cssSelector(".totalRow button")).click();
 
-
-
         Actions a = new Actions(driver);
         a.sendKeys(driver.findElement(By.cssSelector("[placeholder='Select Country']")),"india").build().perform();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
         //By Css
         // .ta-item:nth-of-type(2)
-        driver.findElement(By.xpath("//button[contains(@class,'ta-item')][2]")).click();
+        driver.findElement(By.xpath("//button[contains(@class,'ta-item list-group-item ng-star-inserted')][2]")).click();
         driver.findElement(By.cssSelector(".action__submit")).click();
         String confirmMessage = driver.findElement(By.cssSelector(".hero-primary")).getText();
         Assert.assertEquals(confirmMessage,"THANKYOU FOR THE ORDER.");
