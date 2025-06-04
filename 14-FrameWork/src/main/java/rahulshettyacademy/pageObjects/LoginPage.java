@@ -1,6 +1,5 @@
 package rahulshettyacademy.pageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,10 +37,12 @@ public class LoginPage extends AbstractComponents {
     WebElement submitBtn;
 
     //Action Method
-    public void loginApplication(String email, String password){
+    public ProductCatalogue loginApplication(String email, String password){
         userEmail.sendKeys(email);
         passwordEle.sendKeys(password);
         submitBtn.click();
+        ProductCatalogue productCatalogue = new ProductCatalogue(driver);
+        return productCatalogue;
     }
 
     public void goTo(){
