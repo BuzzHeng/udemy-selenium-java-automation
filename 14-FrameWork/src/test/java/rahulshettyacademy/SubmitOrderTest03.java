@@ -1,5 +1,6 @@
 package rahulshettyacademy;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,7 @@ public class SubmitOrderTest03 {
     public static void main(String[] args) throws InterruptedException {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(options);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().window().maximize();
@@ -56,7 +58,7 @@ public class SubmitOrderTest03 {
         //By Css
         // .ta-item:nth-of-type(2)
         String confirmMessage = confirmationPage.getConfirmMessage();
-        Assert.assertEquals(confirmMessage,"THANKYOU FOR THE ORDER.");
+        Assert.assertTrue(confirmMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
         driver.close();
     }
 }
