@@ -37,3 +37,16 @@ public ProductPage login(String user, String pass){
     return new ProductPage(driver);
 }
 ```
+
+[ Test Configuration Methods ]
+Base Test Class
+- initializeDriver() method
+- launchApplication() method
+- 
+[ Global Properties ] 
+- Create GlobalData.properties in test resource 
+Properties prop = new Properties();
+FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "Relative Filepath");
+prob.load(fis);
+
+[ Parallel Run ]
