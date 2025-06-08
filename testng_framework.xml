@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Load Department" parallel="tests" thread-count="10">
-    <parameter name="URL" value="qaclickacademy.com"/>
-    <test name="Personal Loan">
-        <parameter name="URL" value="personalloan.com"/>
-        <classes>
-            <class name="test.FirstLesson01"/>
-            <class name="test.FirstLesson02"/>
-            <class name="test.SecondLesson04">
-                <methods>
-                    <include name="MobileLoginHomeLoan"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    
-    <test name="Car Loan">
-        <parameter name="URL" value="carloan.com"/>
-        <parameter name="APIKEY/username" value="12345"/>
-        <classes>
-            <class name="test.SecondLesson03">
-                <methods>
-                    <exclude name="API.*"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
+
+<suite name="Suite">
+
+  <test name="Submit Order Test" verbose="2" preserve-order="true" thread-count="5">
+    <classes>
+      <class name="rahulshettyacademy.tests.SubmitOrderTest04"/>
+    </classes>
+  </test>
+
+  <test name="Error Validation Test" verbose="2" preserve-order="true" thread-count="5">
+    <classes>
+        <class name="rahulshettyacademy.tests.ErrorValidationsTest05"/>
+    </classes>
+ </test>
+
 </suite>

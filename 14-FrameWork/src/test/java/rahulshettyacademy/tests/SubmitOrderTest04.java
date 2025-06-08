@@ -10,13 +10,14 @@ import java.io.IOException;
 import java.util.List;
 
 public class SubmitOrderTest04 extends BaseTest {
+    String productName = "ZARA COAT 3";
 
     @Test
     public void SubmitOrder() throws IOException, InterruptedException {
 
         String username = "scrashers@gmail.com";
         String password = "@QWE12345qwe";
-        String productName = "ZARA COAT 3";
+
 
         // LoginPage loginPage = launchApplication();
         // 1. Removed by using @BeforeMethod
@@ -40,8 +41,14 @@ public class SubmitOrderTest04 extends BaseTest {
 
         String confirmMessage = confirmationPage.getConfirmMessage();
         Assert.assertTrue(confirmMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
-
-        tearDown();
         // driver.close(); - Removed by using @AfterMethod
+    }
+
+    @Test(dependsOnMethods = {"SubmitOrder"})
+    public void OrderHistoryTest(){
+        // "ZARA COAT 3"
+        ProductCatalogue productCatalogue = landingPage.loginApplication("scrashers@gmail.com","@QWE12345qwe");
+        OrderPage orderPage = productCatalogue.goToOrder();
+        Assert.assertTrue(orderPage.verifyOrderDisplay(productName));
     }
 }

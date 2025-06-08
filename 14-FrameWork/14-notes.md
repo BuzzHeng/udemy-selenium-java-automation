@@ -50,3 +50,16 @@ FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "Rela
 prob.load(fis);
 
 [ Parallel Run ]
+
+- Use @AfterMethod/@BeforeMethod for landing page / tear down
+
+[ Test Strategy ]
+- Decide how test should be categorise with appropriate annotation.
+100 Test Cases -> 100 Java
+- Do not blindly create test cases
+- Divide the test case based on category
+Java class -> Login Page 5 @Test, @Test, @Test, @Test, @Test
+Java class -> submit Order, order check
+ProductCatalogue -> @Test
+
+@Test(dependsonMethod=""")
