@@ -1,9 +1,6 @@
 package rahulshettyacademy.tests;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import rahulshettyacademy.TestComponents.BaseTest;
@@ -21,8 +18,11 @@ public class SubmitOrderTest04 extends BaseTest {
         String password = "@QWE12345qwe";
         String productName = "ZARA COAT 3";
 
-        LoginPage loginPage = launchApplication();
-        ProductCatalogue productCatalogue = loginPage.loginApplication(username,password);
+        // LoginPage loginPage = launchApplication();
+        // 1. Removed by using @BeforeMethod
+        // 2. Add loginPage at BaseTest so other class can access.
+
+        ProductCatalogue productCatalogue = landingPage.loginApplication(username,password);
 
         List<WebElement> products = productCatalogue.getProductList();
 
@@ -40,6 +40,8 @@ public class SubmitOrderTest04 extends BaseTest {
 
         String confirmMessage = confirmationPage.getConfirmMessage();
         Assert.assertTrue(confirmMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
-        driver.close();
+
+        tearDown();
+        // driver.close(); - Removed by using @AfterMethod
     }
 }

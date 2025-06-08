@@ -4,10 +4,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import rahulshettyacademy.pageObjects.LoginPage;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import rahulshettyacademy.pageObjects.LandingPage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,6 +17,7 @@ import java.util.Properties;
 public class BaseTest {
 
     public WebDriver driver;
+    public LandingPage landingPage;
 
     public WebDriver initializeDriver() throws IOException {
 
@@ -51,13 +52,19 @@ public class BaseTest {
         return driver;
     }
 
-    public LoginPage launchApplication() throws IOException{
+    @BeforeMethod
+    public LandingPage launchApplication() throws IOException{
         driver = initializeDriver();
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.goTo();
+        landingPage = new LandingPage(driver);
+        landingPage.goTo();
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.body.style.zoom='80%'");
-        return loginPage;
+        return landingPage;
+    }
+
+    @AfterMethod
+    public void tearDown(){
+        driver.close();
     }
 
 }

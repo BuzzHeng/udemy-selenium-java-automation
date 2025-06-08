@@ -31,9 +31,9 @@ public class SubmitOrderTest03 {
         String password = "@QWE12345qwe";
         String productName = "ZARA COAT 3";
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.goTo();
-        ProductCatalogue productCatalogue = loginPage.loginApplication(username,password);
+        LandingPage landingPage = new LandingPage(driver);
+        landingPage.goTo();
+        ProductCatalogue productCatalogue = landingPage.loginApplication(username,password);
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.body.style.zoom='80%'");
