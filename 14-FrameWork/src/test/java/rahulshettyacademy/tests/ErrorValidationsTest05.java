@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ErrorValidationsTest05 extends BaseTest {
 
-    @Test
+    @Test(groups = {"ErrorHandling"})
     public void LoginErrorValidation() throws IOException, InterruptedException {
 
         String username = "scrashers@gmail.com";

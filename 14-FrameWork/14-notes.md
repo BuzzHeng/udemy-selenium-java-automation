@@ -62,4 +62,14 @@ Java class -> Login Page 5 @Test, @Test, @Test, @Test, @Test
 Java class -> submit Order, order check
 ProductCatalogue -> @Test
 
-@Test(dependsonMethod=""")
+[ Run test in Parallel and  Apply Groups using TestNG.xml ]
+- @Test(dependsonMethod=""")
+- @Test(group="ErrorHandling")
+```xml
+<groups>
+    <run>
+        <include name="ErrorHandling"/>
+    </run>
+</groups>
+```
+- @Test(alwaysRun = true)
