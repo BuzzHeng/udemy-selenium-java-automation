@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite parallel="tests" name="Suite">
+
+<groups>
+    <run>
+        <include name="Purchase"/>
+    </run>
+</groups>
+
+  <test name="Submit Order Test" verbose="2" preserve-order="true" thread-count="5">
+    <classes>
+      <class name="rahulshettyacademy.tests.SubmitOrderTest_DataProvider05"/>
+    </classes>
+  </test>
+
+  <test name="Error Validation Test" verbose="2" preserve-order="true" thread-count="5">
+    <classes>
+        <class name="rahulshettyacademy.tests.ErrorValidationsTest05"/>
+    </classes>
+ </test>
+
+</suite>

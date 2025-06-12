@@ -2,6 +2,7 @@ package rahulshettyacademy.tests;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import rahulshettyacademy.TestComponents.BaseTest;
 import rahulshettyacademy.pageObjects.*;

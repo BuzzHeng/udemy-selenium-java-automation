@@ -73,3 +73,7 @@ ProductCatalogue -> @Test
 </groups>
 ```
 - @Test(alwaysRun = true)
+
+[ Parameterization ]
+
+@Test(dataProvider = "getData", groups="Purchase")
