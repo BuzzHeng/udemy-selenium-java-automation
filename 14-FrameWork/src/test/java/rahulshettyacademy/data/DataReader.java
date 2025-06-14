@@ -13,7 +13,9 @@ public class DataReader {
 
     public List<HashMap<String, String>> getJsonDataToMap(String filepath) throws IOException {
         //read json to string
-        String jsonContent = FileUtils.readFileToString(new File(filepath), StandardCharsets.UTF_8);
+
+        File file = new File(filepath);
+        String jsonContent = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 
         //Convert string to hashmap Jackson Databind
         ObjectMapper mapper = new ObjectMapper();
@@ -21,6 +23,5 @@ public class DataReader {
         });
         return data;
         //{map, map}
-
     }
 }

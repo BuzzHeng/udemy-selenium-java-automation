@@ -56,7 +56,7 @@ public class SubmitOrderTest_DataProvider06 extends BaseTest {
 
     //HashMap DataProvider
     @DataProvider
-    public Object[][] getData(){
+    public Object[][] getData() throws IOException {
         /*HashMap<String,String> map = new HashMap<String,String>();
         map.put("email", "scrashers@gmail.com");
         map.put("password", "@QWE12345qwe");
@@ -66,8 +66,8 @@ public class SubmitOrderTest_DataProvider06 extends BaseTest {
         map1.put("email", "hengheng@gmail.com");
         map1.put("password", "Iamki000");
         map1.put("product", "ADIDAS ORIGINAL");*/
-        getJsonDataToMap();
-        List<HashMap<String, String>> data = ,readValue();
-        return new Object[][]{ {map},{map1}};
+        String userdir = System.getProperty("userdir") + "\\Github\\Udemy\\udemy-selenium-java-automation\\14-FrameWork\\src\\test\\java\\rahulshettyacademy\\data\\PurchaseOrder.Json";
+        List<HashMap<String, String>> data = getJsonDataToMap(userdir);
+        return new Object[][]{ {data.get(0)},{data.get(1)}};
     }
 }
