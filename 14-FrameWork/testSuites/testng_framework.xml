@@ -2,6 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite parallel="tests" name="Suite">
+<listeners>
+    <listener class-name="rahulshettyacademy.TestComponents.Listeners"/>
+</listeners>
 
   <test name="Submit Order Test" verbose="2" preserve-order="true" thread-count="5">
     <classes>
