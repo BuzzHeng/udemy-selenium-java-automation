@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import rahulshettyacademy.TestComponents.BaseTest;
+import rahulshettyacademy.TestComponents.Retry;
 import rahulshettyacademy.pageObjects.CartPage;
 import rahulshettyacademy.pageObjects.ProductCatalogue;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class ErrorValidationsTest05 extends BaseTest {
 
-    @Test(groups = {"ErrorHandling"})
+    @Test(groups = {"ErrorHandling"}, retryAnalyzer = Retry.class)
     public void LoginErrorValidation() throws IOException, InterruptedException {
 
         String username = "scrashers@gmail.com";
@@ -25,7 +26,6 @@ public class ErrorValidationsTest05 extends BaseTest {
         //.ng-tns-c4-22.ng-star-inserted.ng-trigger.ng-trigger-flyInOut.ngx-toastr.toast-error
         Assert.assertEquals("Incorrect email  password.", landingPage.getErrorMessage());
         // Fail test for extent report ng
-
     }
 
     @Test

@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Listeners extends BaseTest implements ITestListener {
     ExtentTest test;
     ExtentReports extent = ExtentReporterNG.getReportObject();
-    ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>(); //ThreadSafe
+    ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>(); //ThreadSafe
 
     @Override
     public void onTestStart(ITestResult result) {
@@ -24,7 +24,7 @@ public class Listeners extends BaseTest implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        test.log(Status.PASS,"Test Passed");
+        extentTest.get().log(Status.PASS,"Test Passed");
     }
 
     @Override
@@ -33,22 +33,24 @@ public class Listeners extends BaseTest implements ITestListener {
 
         try {
             driver = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e1) {
+            e1.printStackTrace();
         }
 
         //Screenshot, Attach to report
-        String filePath;
+        String filePath = null;
         try {
             filePath = getScreenshot(result.getMethod().getMethodName(), driver);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         test.addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
+        System.out.println("Test skipped: " + result.getName());
+        extentTest.get().skip(result.getThrowable());
     }
 
     @Override
