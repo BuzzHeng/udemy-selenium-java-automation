@@ -25,6 +25,7 @@ Reduce initializing PageObject in test by chaining.
 [ PageObject Chaining - Cleaner and more readable test flow ]
 - Reduce new PageObject(driver) in tests
 - Return next PageObject in methods
+
 [ Example ]
 ```java
 CartPage cart = new LoginPage(driver)
@@ -42,7 +43,7 @@ public ProductPage login(String user, String pass){
 Base Test Class
 - initializeDriver() method
 - launchApplication() method
-- 
+
 [ Global Properties ] 
 - Create GlobalData.properties in test resource 
 Properties prop = new Properties();
@@ -50,7 +51,6 @@ FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "Rela
 prob.load(fis);
 
 [ Parallel Run ]
-
 - Use @AfterMethod/@BeforeMethod for landing page / tear down
 
 [ Test Strategy ]
@@ -74,6 +74,11 @@ ProductCatalogue -> @Test
 ```
 - @Test(alwaysRun = true)
 
-[ Parameterization ]
+[ Data Driven Testing & Parameterization ]
+- using TestNG @DataProvider Annotation
+- @Test(dataProvider = "getData", groups={"RegressionTest"} )
+1) Hard coded Array Object
+2) HashMap
+3) Hash Map & JSON File Readers
 
-@Test(dataProvider = "getData", groups="Purchase")
+[ TakeScreenShot in BaseTest ]

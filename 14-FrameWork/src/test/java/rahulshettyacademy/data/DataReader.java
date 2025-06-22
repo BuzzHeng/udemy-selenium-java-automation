@@ -13,7 +13,6 @@ public class DataReader {
 
     public List<HashMap<String, String>> getJsonDataToMap(String filepath) throws IOException {
         //read json to string
-
         File file = new File(filepath);
         String jsonContent = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 
@@ -22,6 +21,5 @@ public class DataReader {
         List<HashMap<String, String>> data = mapper.readValue(jsonContent, new TypeReference<List<HashMap<String, String>>>() {
         });
         return data;
-        //{map, map}
     }
 }
