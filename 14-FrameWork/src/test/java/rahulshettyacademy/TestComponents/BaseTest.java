@@ -10,6 +10,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import rahulshettyacademy.pageObjects.LandingPage;
@@ -36,7 +37,9 @@ public class BaseTest {
                 + "\\14-FrameWork\\src\\main\\java\\rahulshettyacademy\\resources\\GlobalData.properties");
         prop.load(fis);
 
-        String browserName = prop.getProperty("browser");
+        // Ternary operator to get argument from maven command or GlobalData.properties
+        // If 1st condition true, run 2nd condition else run 3rd condition.
+        String browserName = System.getProperty("browser") != null ? System.getProperty("browser") : prop.getProperty("browser");
         System.out.println("Browser: " + browserName);
 
         if (browserName.equalsIgnoreCase("chrome")) {
@@ -45,6 +48,8 @@ public class BaseTest {
             driver = new ChromeDriver();
         } else if (browserName.equalsIgnoreCase("firefox")) {
             System.out.println("Launching Firefox...");
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
         } else if (browserName.equalsIgnoreCase("edge")) {
             System.out.println("Launching Edge...");
             System.setProperty("webdriver.edge.driver", "edge.exe");
