@@ -24,7 +24,7 @@ public class ErrorValidationsTest05 extends BaseTest {
         //div[@aria-label='Incorrect email or password.']
         //div[@class='ng-tns-c4-20 toast-message ng-star-inserted']
         //.ng-tns-c4-22.ng-star-inserted.ng-trigger.ng-trigger-flyInOut.ngx-toastr.toast-error
-        Assert.assertEquals("Incorrect email  password.", landingPage.getErrorMessage());
+        Assert.assertEquals("Incorrect email or password.", landingPage.getErrorMessage());
         // Fail test for extent report ng
     }
 

@@ -59,7 +59,7 @@ public class AbstractComponents {
          * instead of waiting the full 4s via WebDriverWait.
          * Uncomment below for proper wait in production:
          */
-         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
          wait.until(ExpectedConditions.invisibilityOf(ele));
 
     }
