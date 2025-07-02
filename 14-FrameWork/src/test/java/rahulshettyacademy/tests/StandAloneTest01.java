@@ -43,6 +43,7 @@ public class StandAloneTest01 {
                 .findFirst()
                 .orElse(null);
 
+        assert prod != null;
         prod.findElement(By.cssSelector(".card-body button:last-of-type")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
