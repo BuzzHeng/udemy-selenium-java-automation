@@ -52,5 +52,11 @@ public class StepDefinitionImpl extends BaseTest {
         Assert.assertTrue(confirmMessage.equalsIgnoreCase(string));
         driver.close();
     }
+
+    @Then("{string}, message is displayed")
+    public void messageIsDisplayed(String arg0) {
+        Assert.assertEquals(arg0, landingPage.getErrorMessage());
+        driver.close();
+    }
 }
 

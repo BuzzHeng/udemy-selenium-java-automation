@@ -27,6 +27,7 @@ public class AbstractComponents {
     WebElement orderHeader;
 
     public CartPage goToCart(){
+        waitForElementToAppear(cartHeader);
         cartHeader.click();
         CartPage cartPage = new CartPage(driver);
         return cartPage;
@@ -62,5 +63,10 @@ public class AbstractComponents {
          WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
          wait.until(ExpectedConditions.invisibilityOf(ele));
 
+    }
+
+    public void waitForElementToDisappear(By findBy) throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(findBy));
     }
 }

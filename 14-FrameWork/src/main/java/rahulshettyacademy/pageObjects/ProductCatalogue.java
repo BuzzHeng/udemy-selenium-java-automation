@@ -23,12 +23,10 @@ public class ProductCatalogue extends AbstractComponents {
     @FindBy(css=".mb-3")
     List<WebElement> products;
 
-    @FindBy(css=".ng-animating")
-    WebElement spinner;
-
     By productsBy = By.cssSelector(".mb-3");
     By addToCartBy = By.cssSelector(".card-body button:last-of-type");
     By toastMessage = By.cssSelector("#toast-container");
+    By spinner = By.cssSelector(".ng-animating");
 
     public List<WebElement> getProductList(){
         waitForElementToAppear(productsBy);
@@ -44,6 +42,7 @@ public class ProductCatalogue extends AbstractComponents {
 
     public void addProductToCart(String productName) throws InterruptedException {
         WebElement prod = getProductByName(productName);
+        waitForElementToAppear(addToCartBy);
         prod.findElement(addToCartBy).click();
         waitForElementToAppear(toastMessage);
         waitForElementToDisappear(spinner);
