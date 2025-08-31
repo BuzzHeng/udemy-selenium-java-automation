@@ -4,12 +4,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import rahulshettyacademy.pageObjects.LandingPage;
@@ -17,7 +16,6 @@ import rahulshettyacademy.pageObjects.LandingPage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
@@ -36,16 +34,26 @@ public class BaseTest {
                 + "\\14-FrameWork\\src\\main\\java\\rahulshettyacademy\\resources\\GlobalData.properties");
         prop.load(fis);
 
-        String browserName = prop.getProperty("browser");
+        // Ternary operator to get argument from maven command or GlobalData.properties
+        // If 1st condition true, run 2nd condition else run 3rd condition.
+        String browserName = System.getProperty("browser") != null ? System.getProperty("browser") : prop.getProperty("browser");
         System.out.println("Browser: " + browserName);
 
-        if (browserName.equalsIgnoreCase("chrome")) {
+        if (browserName.toLowerCase().contains("chrome")) {
             System.out.println("Launching Chrome...");
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-        } else if (browserName.equalsIgnoreCase("firefox")) {
+            ChromeOptions options = new ChromeOptions();
+            if(browserName.contains("headless")){
+                options.addArguments("--headless=new");
+                options.addArguments("--window-size=1440,900");
+                options.addArguments("--disable-gpu");
+            }
+            driver = new ChromeDriver(options);
+        } else if (browserName.toLowerCase().contains("firefox")) {
             System.out.println("Launching Firefox...");
-        } else if (browserName.equalsIgnoreCase("edge")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+        } else if (browserName.toLowerCase().contains("edge")) {
             System.out.println("Launching Edge...");
             System.setProperty("webdriver.edge.driver", "edge.exe");
             driver = new EdgeDriver();
@@ -55,9 +63,11 @@ public class BaseTest {
             throw new IllegalStateException("Driver is null. Check 'browser' value or WebDriver setup.");
         }
 
-
-        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        if (!browserName.toLowerCase().contains("headless")) {
+            driver.manage().window().maximize();
+        }
+        System.out.println("Viewport size: " + driver.manage().window().getSize());
         return driver;
     }
 
@@ -67,7 +77,7 @@ public class BaseTest {
 
         //Convert string to hashmap Jackson Databind
         ObjectMapper mapper = new ObjectMapper();
-        List<HashMap<String, String>> data = mapper.readValue(jsonContent, new TypeReference<List<HashMap<String, String>>>() {
+        List<HashMap<String, String>> data = mapper.readValue(jsonContent, new TypeReference<>() {
         });
         return data;
         //{map, map}

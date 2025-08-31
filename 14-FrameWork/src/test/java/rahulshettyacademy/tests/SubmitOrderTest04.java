@@ -2,7 +2,6 @@ package rahulshettyacademy.tests;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import rahulshettyacademy.TestComponents.BaseTest;
 import rahulshettyacademy.pageObjects.*;
@@ -19,7 +18,6 @@ public class SubmitOrderTest04 extends BaseTest {
         String username = "scrashers@gmail.com";
         String password = "@QWE12345qwe";
 
-
         // LoginPage loginPage = launchApplication();
         // 1. Removed by using @BeforeMethod
         // 2. Add loginPage at BaseTest so other class can access.
@@ -27,7 +25,6 @@ public class SubmitOrderTest04 extends BaseTest {
         ProductCatalogue productCatalogue = landingPage.loginApplication(username,password);
 
         List<WebElement> products = productCatalogue.getProductList();
-
         productCatalogue.addProductToCart(productName);
         CartPage cartPage = productCatalogue.goToCart();
 

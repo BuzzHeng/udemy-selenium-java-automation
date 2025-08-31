@@ -48,6 +48,7 @@ public class StandAloneTest02 {
                 .findFirst()
                 .orElse(null);
 
+        assert prod != null;
         prod.findElement(By.cssSelector(".card-body button:last-of-type")).click();
 
         //ng-animating
